@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>PhoneBook</title>
+    <!-- See configuration in WebMvConfig.java -->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+</head>
+<body>
+<div>
+    <form method="get">
+            <input type="search" name="q" placeholder="Поиск по сайту">
+            <input type="submit"  value="Найти">
+    </form>
+    <form method="post">
+        <input type="text" name="new_user" placeholder="Введите имя">
+        <button type="submit">Добавить нового пользователя</button>
+
+    </form>
+</div>
+<table class="table" style="width: 100%; table-layout: fixed; margin: fill;">
+    <tr>
+        <th width="30%" style="vertical-align: bottom; text-align: center;"><small>Ф.И.О.</small></th>
+        <th width="50%" style="vertical-align: bottom; text-align: center;"><small>Адрес</small></th>
+        <th width="20%" style="vertical-align: bottom; text-align: center;"><small></small></th>
+    </tr>
+    <tr th:each="user : ${userList}">
+        <td th:text="${user.getName()}">Standart name</td>
+        <td th:text="${user.getStreet()} + ', дом №' + ${user.getRoomNumber()} + ', кв.:' + ${user.getRoomNumber()}">Standart age</td>
+        <td><a th:href="@{/user(id=${user.getId()})}" >Открыть контакт</a>
+            <a th:href="@{/delete(id=${user.getId()})}" >Удалить</a></td>
+    </tr>
+</table>
+
+
+</body>
+</html>
