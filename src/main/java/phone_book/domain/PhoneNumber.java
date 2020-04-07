@@ -11,12 +11,12 @@ public class PhoneNumber {
     private String number;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User user;
+    private Person person;
 
-    public PhoneNumber(String type, String number, User user) {
+    public PhoneNumber(String type, String number, Person person) {
         this.type = type;
         this.number = number;
-        this.user = user;
+        this.person = person;
     }
 
     public PhoneNumber() {
@@ -38,22 +38,24 @@ public class PhoneNumber {
         this.type = type;
     }
 
+    //Если ипользуется MVC, то форматировать вывод данных лучше на вью.
     public String getNumber() {
-        StringBuffer result = new StringBuffer(number.substring(0,1)).append(" (")
-                .append(number.substring(1,4)).append(") ").append(number.substring(4,number.length()));
-        return result.toString();
+       // StringBuffer result = new StringBuffer(number.substring(0,1)).append(" (")
+       //         .append(number.substring(1,4)).append(") ").append(number.substring(4,number.length()));
+       // return result.toString();
+        return number;
     }
 
     public void setNumber(String number) {
         this.number = number;
     }
 
-    public User getUser() {
-        return user;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
 }

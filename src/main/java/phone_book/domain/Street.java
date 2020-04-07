@@ -5,6 +5,10 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Если это не персистент объект до думаю нет смысла ему лежать в domain
+ * Можно было сделать и справочников с возможностью редактирования
+ */
 public class Street {
 
 
@@ -12,7 +16,8 @@ public class Street {
 
     static{
         try {
-            BufferedReader bf = new BufferedReader(new FileReader(Paths.get("/Users/IKV/IdeaProjects/PhoneBook/src/main/resources/str.txt").toFile()));
+            // Можно путь сделать относительным
+            BufferedReader bf = new BufferedReader(new FileReader(Paths.get("src/main/resources/str.txt").toFile()));
             String[] str = bf.readLine().split(", ");
             streets = Arrays.asList(str);
             bf.close();
