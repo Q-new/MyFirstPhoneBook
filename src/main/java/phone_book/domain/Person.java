@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class User {
+public class Person {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,13 +15,13 @@ public class User {
     private String street;
     private int houseNumber;
     private int roomNumber;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
     private List<PhoneNumber> numbers;
 
-    public User() {
+    public Person() {
     }
 
-    public User(String name, int age) {
+    public Person(String name, int age) {
         this.name = name;
        this.numbers = new ArrayList<>();
     }
@@ -77,12 +77,12 @@ public class User {
         this.roomNumber = roomNumber;
     }
 
-    public static User getNewUser(){
-        User user = new User();
-        user.setName("");
-        user.setStreet(Street.getAllStreet().get(0));
-        user.setHouseNumber(0);
-        user.setRoomNumber(0);
-        return user;
+    public static Person getNewUser(){
+        Person person = new Person();
+        person.setName("");
+        person.setStreet(Street.getAllStreet().get(0));
+        person.setHouseNumber(0);
+        person.setRoomNumber(0);
+        return person;
     }
 }

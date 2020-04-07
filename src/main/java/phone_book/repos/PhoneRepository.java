@@ -1,11 +1,13 @@
 package phone_book.repos;
 
+import org.springframework.stereotype.Repository;
+import phone_book.domain.Person;
 import phone_book.domain.PhoneNumber;
-import phone_book.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
+@Repository
 public interface PhoneRepository extends JpaRepository<PhoneNumber, Integer> {
-    List<PhoneNumber> findAllByUser(User user);
+    List<PhoneNumber> findAllByPerson(Person person);
 }

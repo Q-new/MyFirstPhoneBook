@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+</head>
+<body>
+<div align="left">
+<p>
+    <a href="/" class="button">Go to back</a>
+</p>
+
+<form action="/save">
+    <fieldset>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <form action="/save">
+                        <div class="form-group">
+                             <input type="hidden" name="id" th:value="${person.getId()}">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Ф.И.О.: </label>
+                            <input type="text" class="form-control" id="name" name="name" th:value="${person.getName()}">
+                        </div>
+                        <div>
+                            <label for="street">Улица: </label>
+                            <select id="street_user" name="street">
+                                <option th:each="i : ${streets}" th:value="${i}" th:text="${i}" id="street"
+                                        name="street" th:selected="${i==person.getStreet()}">
+                                </option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="house">Номер дома: </label>
+                            <input type="text" class="form-control" id="house" name="house" th:value="${person.getHouseNumber()}">
+                        </div>
+                        <div>
+                            <label for="room">Номер квартиры: </label>
+                            <input type="text" class="form-control" id="room" name="room" th:value="${person.getRoomNumber()}">
+                        </div>
+                        <button type="submit" class="btn btn-default">Отправить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <hr/>
+        <div>
+            <form method="post">
+                <input type="text" name="type" placeholder="Введите тип телефона">
+                <input type="text" name="number" placeholder="Введите номер">
+                <button type="submit">Добававить</button>
+            </form>
+        </div>
+        <table>
+            <tr>
+                <th>Phone type</th>
+                <th>Number</th>
+            </tr>
+            <tr th:each="number : ${numbers}">
+                <td th:text="${number.getType()}">Standard type</td>
+                <td th:text="${number.getNumber()}">Standart number</td>
+                <td><a th:href="@{/person/delete(idNumber=${number.getId()})}" class="button" >Delete</a></td>
+
+            </tr>
+        </table>
+    </fieldset>
+
+</form>
+
+</body>
+</html>

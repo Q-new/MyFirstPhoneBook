@@ -17,27 +17,27 @@
                 <div class="col-md-12">
                     <form action="/save">
                         <div class="form-group">
-                             <input type="hidden" name="id" th:value="${user.getId()}">
+                             <input type="hidden" name="id" th:value="${person.getId()}">
                         </div>
                         <div class="form-group">
                             <label for="name">Ф.И.О.: </label>
-                            <input type="text" class="form-control" id="name" name="name" th:value="${user.getName()}">
+                            <input type="text" class="form-control" id="name" name="name" th:value="${person.getName()}">
                         </div>
                         <div>
                             <label for="street">Улица: </label>
                             <select id="street_user" name="street">
                                 <option th:each="i : ${streets}" th:value="${i}" th:text="${i}" id="street"
-                                        name="street" th:selected="${i==user.getStreet()}">
+                                        name="street" th:selected="${i==person.getStreet()}">
                                 </option>
                             </select>
                         </div>
                         <div>
                             <label for="house">Номер дома: </label>
-                            <input type="text" class="form-control" id="house" name="house" th:value="${user.getHouseNumber()}">
+                            <input type="text" class="form-control" id="house" name="house" th:value="${person.getHouseNumber()}">
                         </div>
                         <div>
                             <label for="room">Номер квартиры: </label>
-                            <input type="text" class="form-control" id="room" name="room" th:value="${user.getRoomNumber()}">
+                            <input type="text" class="form-control" id="room" name="room" th:value="${person.getRoomNumber()}">
                         </div>
                         <button type="submit" class="btn btn-default">Отправить</button>
                     </form>
@@ -60,7 +60,7 @@
             <tr th:each="number : ${numbers}">
                 <td th:text="${number.getType()}">Standard type</td>
                 <td th:text="${number.getNumber()}">Standart number</td>
-                <td><a th:href="@{/user/delete(idNumber=${number.getId()})}" class="button" >Delete</a></td>
+                <td><a th:href="@{/person/delete(idNumber=${number.getId()})}" class="button" >Delete</a></td>
 
             </tr>
         </table>
